@@ -1,0 +1,5 @@
+# Public repository allowlist. Application binaries belong in GitHub Releases.
+*
+!.gitignore
+!README.md
+!CHANGELOG.md
