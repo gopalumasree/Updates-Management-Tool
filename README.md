@@ -4,7 +4,7 @@
 
 Created by **Venugopala Rao.P** · **+91 9908987878**
 
-Part of **[InfraSolutions](https://github.com/gopalumasree/InfraSolutions)** — public infrastructure tools and guides.
+Part of **[VenuOps](https://github.com/gopalumasree/VenuOps)** — public infrastructure tools and guides.
 
 ## Download
 
