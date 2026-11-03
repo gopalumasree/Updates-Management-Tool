@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patch Windows Servers over RDP without WinRM: UMT Guide</title>
+  <meta name="description" content="How VenuOps UMT patches Windows servers through RDP: requirements, the scan-to-deployment workflow, Windows Update/WSUS troubleshooting and current limits.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://gopalumasree.github.io/Updates-Management-Tool/rdp-patching-guide.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="VenuOps">
+  <meta property="og:title" content="Patch Windows Servers over RDP without WinRM: UMT Guide">
+  <meta property="og:description" content="Understand the connection, check requirements, review patches and troubleshoot one device at a time.">
+  <meta property="og:url" content="https://gopalumasree.github.io/Updates-Management-Tool/rdp-patching-guide.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#142d46">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="guide.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"Patch Windows servers over RDP without WinRM","description":"Requirements, architecture, scan-to-deployment workflow and troubleshooting for VenuOps UMT 0.8.2.","url":"https://gopalumasree.github.io/Updates-Management-Tool/rdp-patching-guide.html","mainEntityOfPage":"https://gopalumasree.github.io/Updates-Management-Tool/rdp-patching-guide.html","datePublished":"2026-11-03","dateModified":"2026-11-03","author":{"@type":"Organization","name":"VenuOps","url":"https://github.com/gopalumasree/VenuOps"},"about":{"@id":"https://gopalumasree.github.io/Updates-Management-Tool/#umt"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"VenuOps UMT","item":"https://gopalumasree.github.io/Updates-Management-Tool/"},{"@type":"ListItem","position":2,"name":"RDP patching guide","item":"https://gopalumasree.github.io/Updates-Management-Tool/rdp-patching-guide.html"}]}]}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap topbar">
+  <a class="brand" href="./" aria-label="VenuOps home"><span class="mark">V</span> VenuOps<span class="brand-note">TOOLS FOR IT OPERATIONS</span></a>
+  <nav aria-label="Main navigation"><a href="./">Product</a><a href="#workflow">Workflow</a><a href="#troubleshooting">Troubleshooting</a><a class="nav-download" href="./#download">Download ↗</a></nav>
+</header>
+<main id="main" class="wrap guide">
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">VenuOps UMT</a><span aria-hidden="true">/</span><span>RDP patching guide</span></nav>
+  <article>
+    <header class="guide-intro">
+      <p class="eyebrow">PRACTICAL GUIDE · UMT 0.8.2</p>
+      <h1>Patch Windows servers<br><span>over RDP, without WinRM.</span></h1>
+      <p class="lead">Use existing Remote Desktop access to scan, review and deploy Windows updates from a portable Windows console. This guide explains what runs on the server and how to complete your first patch review.</p>
+      <p class="small">VenuOps product guide · 3 November 2026 · Created by Venugopala Rao.P</p>
+    </header>
+    <nav class="guide-toc" aria-label="Guide sections"><a href="#connection">Connection</a><a href="#before-you-start">Requirements</a><a href="#workflow">Steps</a><a href="#troubleshooting">Troubleshooting</a><a href="#limits">Limits</a></nav>
+
+    <section class="guide-section" id="connection">
+      <p class="eyebrow">01 / UNDERSTAND THE CONNECTION</p>
+      <h2>What does “RDP-based patching” mean?</h2>
+      <p>UMT uses the RDP session to start a temporary Windows Script Host worker and exchange progress and results through an isolated redirected folder. The worker calls Windows Update APIs on the server. Update packages come from that server’s configured Windows Update or WSUS source.</p>
+      <ol class="route-flow" aria-label="Windows patching architecture"><li><strong>UMT console</strong><span>Your Windows PC</span></li><li><strong>RDP session</strong><span>Worker startup + result exchange</span></li><li><strong>Windows server</strong><span>Local Windows Update APIs</span></li></ol>
+      <div class="table-scroll"><table class="guide-table"><caption>Requirements for UMT’s Windows RDP path</caption><thead><tr><th scope="col">Component</th><th scope="col">How it is used</th></tr></thead><tbody>
+        <tr><th scope="row">RDP access</th><td>Required, including any configured custom port, permitted drive redirection and sufficient update permissions.</td></tr>
+        <tr><th scope="row">Endpoint worker</th><td>Temporary execution using <code>cscript.exe</code>, Windows Update APIs and local WMI checks. No permanent UMT endpoint agent.</td></tr>
+        <tr><th scope="row">PowerShell / WinRM</th><td>No endpoint PowerShell or WinRM setup is required for this path. The tool PC uses a bundled PowerShell runtime.</td></tr>
+        <tr><th scope="row">Other management protocols</th><td>This path does not require enabling remote WMI, Remote Registry or administrative SMB shares.</td></tr>
+        <tr><th scope="row">Update source</th><td>The server must reach its configured update source. RDP connectivity alone does not resolve WSUS or Internet access problems.</td></tr>
+      </tbody></table></div>
+      <p class="small">Platform references: Microsoft documents <a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/cscript">Windows Script Host command-line execution</a> and the <a href="https://learn.microsoft.com/en-us/windows/desktop/Wua_Sdk/portal-client">Windows Update Agent API</a>. UMT’s implementation and release limits are described in its <a href="https://github.com/gopalumasree/Updates-Management-Tool">public documentation</a>.</p>
+    </section>
+
+    <section class="guide-section" id="before-you-start">
+      <p class="eyebrow">02 / CHECK THE FIT</p>
+      <h2>Before your first scan</h2>
+      <ul class="check-list"><li><strong>Download the Public ZIP.</strong> Extract the entire archive into a writable folder. Open <code>UpdatesManagementTool.exe</code>; normal use needs no owner passphrase.</li><li><strong>Check approved access.</strong> Confirm RDP login, the correct port, drive redirection and permission to execute the temporary worker. Keep endpoint security controls enabled.</li><li><strong>Start with one server.</strong> Use scan-only first. Choose a maintenance window and restart policy before deploying updates.</li></ul>
+      <p>UMT fits environments where RDP is already approved and additional management protocols or permanent agents are difficult to introduce. If policy blocks RDP redirection or script execution, resolve that requirement with your administrator before proceeding.</p>
+    </section>
+
+    <section class="guide-section" id="workflow">
+      <p class="eyebrow">03 / SCAN → REVIEW → DEPLOY</p>
+      <h2>Your first patch review, step by step</h2>
+      <ol class="guide-steps"><li><h3>Servers &amp; access</h3><p>Enter the device name or address. Check the detected connection and port, then enter credentials. Complete Windows provider MFA in the native RDP screen when required.</p></li><li><h3>Patch options</h3><p>Choose the patch scope, exclusions, concurrency and restart behavior. Run the scan. Linux kernel options do not exclude Windows cumulative updates.</p></li><li><h3>Review &amp; patch</h3><p>Check each device’s readiness and exact update list. Use <strong>Review patches</strong> for a device or the common batch review. When the plan is correct, select <strong>Apply reviewed patch plan</strong>.</p></li><li><h3>Activity &amp; logs</h3><p>Follow device progress. If one device needs attention, open <strong>Troubleshoot</strong>, inspect the evidence, apply an available fix and <strong>Rescan</strong> that device.</p></li><li><h3>Reports</h3><p>Review installed, failed, unverified and outstanding results. A completed job does not by itself mean the device is fully patched. Keep the extracted folder to retain local history.</p></li></ol>
+      <p><a href="https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.pdf">Open the annotated screen guide · PDF ↗</a></p>
+    </section>
+
+    <section class="guide-section" id="troubleshooting">
+      <p class="eyebrow">04 / RESOLVE THE BLOCKER</p>
+      <h2>When a device does not become ready</h2>
+      <div class="table-scroll"><table class="guide-table"><caption>Use the device’s evidence to choose the next action</caption><thead><tr><th scope="col">What you see</th><th scope="col">Check / next action</th></tr></thead><tbody>
+        <tr><th scope="row">RDP connected; scan did not start</th><td>Open the visible session. Complete sign-in or provider MFA; inspect startup evidence, permitted drive redirection and worker execution. Then rescan.</td></tr>
+        <tr><th scope="row">Zero updates or source unavailable</th><td>Open Troubleshoot. Compare the configured WSUS address, connection result, effective policy and last successful scan. Restore the intended source or use an applicable approved source action, then rescan.</td></tr>
+        <tr><th scope="row">Policy keeps returning</th><td>Identify whether policy is centrally managed or local before changing it. A local registry edit may be reapplied by the management source.</td></tr>
+        <tr><th scope="row">Linux repository fails; other updates appear</th><td>Repair the reported source or prepare a fresh plan from verified working sources. Review excluded repositories. Observed cached packages alone are not a verified patch plan.</td></tr>
+        <tr><th scope="row">Deployment is unavailable</th><td>Review readiness and selection. Rescan after correcting the blocker; a device needs a verified plan with selected updates before it can be dispatched.</td></tr>
+      </tbody></table></div>
+      <p class="small">Example: if an obsolete WSUS address remains in policy, the useful evidence is the address and policy owner—not just “0 updates.” Use the exact registry path and next action reported for that device. Do not change a centrally managed update source blindly.</p>
+    </section>
+
+    <section class="guide-section" id="limits">
+      <p class="eyebrow">05 / PLAN WITH THE CURRENT LIMITS</p>
+      <h2>Agentless does not mean no endpoint execution.</h2>
+      <p>A temporary worker runs on Windows; UMT does not bypass policy or guarantee antivirus acceptance. Windows RDP/MFA scheduling currently needs an open, unlocked UMT portal session. Linux targets use SSH and their package managers.</p>
+      <p>Release 0.8.2 has pending live deployment, installed-service, logged-out scheduling and cross-PC credential-migration acceptance checks. Read the <a href="./#requirements">full requirements, host-trust behavior and validation limits</a>, plus <code>docs/VALIDATION.txt</code> in the release, before broader use.</p>
+      <div class="guide-cta"><div><h3>Try a scan. Review the evidence.</h3><p>Get the protected Public edition and start with a representative test server.</p></div><a class="button primary" href="https://github.com/gopalumasree/Updates-Management-Tool/releases/latest">Download Public edition ↗</a></div>
+    </section>
+  </article>
+</main>
+<footer class="wrap"><div><strong>VenuOps</strong><p>Created by <b>Venugopala Rao.P</b><br><a href="tel:+919908987878">+91 9908987878</a></p></div><div class="footer-links"><a href="./">Product overview</a><a href="https://github.com/gopalumasree/Updates-Management-Tool/issues">Report a product issue ↗</a><a href="https://github.com/gopalumasree/Updates-Management-Tool">UMT on GitHub ↗</a></div></footer>
+</body>
+</html>

@@ -18,6 +18,7 @@
   <meta name="theme-color" content="#142d46">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="guide.css">
   <script type="application/ld+json">
   {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://gopalumasree.github.io/Updates-Management-Tool/#website","url":"https://gopalumasree.github.io/Updates-Management-Tool/","name":"VenuOps UMT","alternateName":"Updates Management Tool"},{"@type":"SoftwareApplication","@id":"https://gopalumasree.github.io/Updates-Management-Tool/#umt","name":"Updates Management Tool (UMT)","alternateName":"VenuOps UMT","url":"https://gopalumasree.github.io/Updates-Management-Tool/","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows x64","softwareVersion":"0.8.2","description":"Portable Windows application for agentless Windows patching over RDP and Linux patching over SSH, with reviewed deployment, troubleshooting, groups and reports.","downloadUrl":"https://github.com/gopalumasree/Updates-Management-Tool/releases/latest","releaseNotes":"https://github.com/gopalumasree/Updates-Management-Tool/releases/tag/v0.8.2","creator":{"@type":"Person","name":"Venugopala Rao.P"},"sameAs":"https://github.com/gopalumasree/Updates-Management-Tool"}]}
   </script>
@@ -26,7 +27,7 @@
 <a class="skip" href="#main">Skip to content</a>
 <header class="wrap topbar">
   <a class="brand" href="./" aria-label="VenuOps home"><span class="mark">V</span> VenuOps<span class="brand-note">TOOLS FOR IT OPERATIONS</span></a>
-  <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#requirements">Requirements</a><a href="#help">Help</a><a class="nav-download" href="#download">Download ↗</a></nav>
+  <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="rdp-patching-guide.html">RDP patching guide</a><a href="#requirements">Requirements</a><a class="nav-download" href="#download">Download ↗</a></nav>
 </header>
 <main id="main">
 <section class="hero wrap">
@@ -51,6 +52,7 @@
   <div class="section-heading"><p class="eyebrow">01 / ACCESS YOU ALREADY USE</p><h2>An RDP-based patching tool<br>for Windows servers.</h2></div>
   <div class="explain-grid"><div><p>UMT connects over Remote Desktop Protocol (RDP) and starts a temporary Windows Script Host worker. The worker calls Windows Update APIs locally; results return through an isolated redirected folder.</p><p>This Windows path does not require enabling PowerShell remoting, remote WMI, Remote Registry or administrative SMB shares. Updates come from the server’s configured Windows Update or WSUS source.</p></div><aside><h3>Where it fits</h3><p>Server environments where RDP is already approved, but additional management protocols or permanent agents are difficult to introduce.</p><p class="small">RDP access, drive redirection and worker execution must be permitted. UMT does not bypass endpoint policy.</p></aside></div>
   <ol class="workflow"><li><span>01</span><h3>Connect & scan</h3><p>Add Windows and Linux devices. Check access and discover available updates.</p></li><li><span>02</span><h3>Review the plan</h3><p>Choose patch scope, exclusions and restart rules. Review the selected updates.</p></li><li><span>03</span><h3>Deploy & verify</h3><p>Apply the reviewed plan. Follow device progress and reported installation results.</p></li><li><span>04</span><h3>Resolve & report</h3><p>Troubleshoot one device, rescan it, and open HTML or Excel reports.</p></li></ol>
+  <aside class="guide-card"><div><p class="eyebrow">PRACTICAL GUIDE</p><h3>Patch Windows servers over RDP without WinRM</h3><p>See the connection requirements, first-scan steps and next actions when a device needs attention.</p></div><a href="rdp-patching-guide.html">Read the RDP patching guide →</a></aside>
 </section>
 <section class="tinted"><div class="wrap section">
   <div class="section-heading"><p class="eyebrow">02 / KEEP THE NEXT ACTION CLOSE</p><h2>When a scan needs attention,<br>work on that device.</h2></div>

@@ -4,6 +4,8 @@
 
 No permanent UMT endpoint agent. Scan, review, deploy, troubleshoot and report.
 
+**[RDP patching guide: requirements, steps and troubleshooting](https://gopalumasree.github.io/Updates-Management-Tool/rdp-patching-guide.html)**
+
 **[Product website & requirements](https://gopalumasree.github.io/Updates-Management-Tool/)** · **[Download Public edition](https://github.com/gopalumasree/Updates-Management-Tool/releases/latest)** · **[Visual PDF guide](https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.pdf)**
 
 Created by **Venugopala Rao.P** · **+91 9908987878**
