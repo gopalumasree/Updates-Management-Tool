@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Agentless Windows Patching over RDP | VenuOps UMT</title>
-  <meta name="description" content="Patch Windows servers over existing RDP access without WinRM or endpoint PowerShell. VenuOps UMT also manages Linux updates over SSH. Download the Public edition.">
+  <title>RDP-Based Patching Tool for Windows | VenuOps UMT</title>
+  <meta name="description" content="VenuOps UMT is an agentless, RDP-based patching tool for Windows servers. Scan, review and deploy updates without WinRM. Linux patching over SSH.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="author" content="Venugopala Rao.P">
   <meta name="google-site-verification" content="dtUkel_ZgGdkJkmqBDtVqUcIwgSxSSlzaxHE_dK5BXY">
   <link rel="canonical" href="https://gopalumasree.github.io/Updates-Management-Tool/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="VenuOps">
-  <meta property="og:title" content="Windows patching over RDP. Linux patching over SSH.">
+  <meta property="og:title" content="RDP-Based Patching Tool for Windows | VenuOps UMT">
   <meta property="og:description" content="Meet UMT: portable patch management with reviewed deployment, per-device troubleshooting and local reports. No permanent UMT endpoint agent.">
   <meta property="og:url" content="https://gopalumasree.github.io/Updates-Management-Tool/">
   <meta name="twitter:card" content="summary">
@@ -48,8 +48,8 @@
 </section>
 <section class="proof-strip"><div class="wrap"><span>No installed endpoint agent</span><span>No WinRM requirement</span><span>Reviewed patch plans</span><span>Windows + Linux targets</span></div></section>
 <section class="wrap section" id="how-it-works">
-  <div class="section-heading"><p class="eyebrow">01 / ACCESS YOU ALREADY USE</p><h2>Agentless Windows patch management<br>through an RDP session.</h2></div>
-  <div class="explain-grid"><div><p>UMT connects through RDP and starts a temporary worker using Windows Script Host. The worker calls Windows Update APIs locally; results return through an isolated redirected folder.</p><p>This Windows path does not require enabling PowerShell remoting, remote WMI, Remote Registry or administrative SMB shares. Updates come from the server’s configured Windows Update or WSUS source.</p></div><aside><h3>Where it fits</h3><p>Server environments where RDP is already approved, but additional management protocols or permanent agents are difficult to introduce.</p><p class="small">RDP access, drive redirection and worker execution must be permitted. UMT does not bypass endpoint policy.</p></aside></div>
+  <div class="section-heading"><p class="eyebrow">01 / ACCESS YOU ALREADY USE</p><h2>An RDP-based patching tool<br>for Windows servers.</h2></div>
+  <div class="explain-grid"><div><p>UMT connects over Remote Desktop Protocol (RDP) and starts a temporary Windows Script Host worker. The worker calls Windows Update APIs locally; results return through an isolated redirected folder.</p><p>This Windows path does not require enabling PowerShell remoting, remote WMI, Remote Registry or administrative SMB shares. Updates come from the server’s configured Windows Update or WSUS source.</p></div><aside><h3>Where it fits</h3><p>Server environments where RDP is already approved, but additional management protocols or permanent agents are difficult to introduce.</p><p class="small">RDP access, drive redirection and worker execution must be permitted. UMT does not bypass endpoint policy.</p></aside></div>
   <ol class="workflow"><li><span>01</span><h3>Connect & scan</h3><p>Add Windows and Linux devices. Check access and discover available updates.</p></li><li><span>02</span><h3>Review the plan</h3><p>Choose patch scope, exclusions and restart rules. Review the selected updates.</p></li><li><span>03</span><h3>Deploy & verify</h3><p>Apply the reviewed plan. Follow device progress and reported installation results.</p></li><li><span>04</span><h3>Resolve & report</h3><p>Troubleshoot one device, rescan it, and open HTML or Excel reports.</p></li></ol>
 </section>
 <section class="tinted"><div class="wrap section">
