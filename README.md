@@ -4,7 +4,7 @@
 
 No permanent UMT endpoint agent. Scan, review, deploy, troubleshoot and report.
 
-**[Product website & requirements](https://venuops-umt.umasreey.chatgpt.site/)** · **[Download Public edition](https://github.com/gopalumasree/Updates-Management-Tool/releases/latest)** · **[Visual PDF guide](https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.pdf)**
+**[Product website & requirements](https://gopalumasree.github.io/Updates-Management-Tool/)** · **[Download Public edition](https://github.com/gopalumasree/Updates-Management-Tool/releases/latest)** · **[Visual PDF guide](https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.pdf)**
 
 Created by **Venugopala Rao.P** · **+91 9908987878**
 

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentless Windows Patching over RDP | VenuOps UMT</title>
+  <meta name="description" content="Patch Windows servers over existing RDP access without WinRM or endpoint PowerShell. VenuOps UMT also manages Linux updates over SSH. Download the Public edition.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="author" content="Venugopala Rao.P">
+  <meta name="google-site-verification" content="EnVmpY32mCL_fumtne6uBINLVQVDiM8uMypnUDBG_og">
+  <link rel="canonical" href="https://gopalumasree.github.io/Updates-Management-Tool/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="VenuOps">
+  <meta property="og:title" content="Windows patching over RDP. Linux patching over SSH.">
+  <meta property="og:description" content="Meet UMT: portable patch management with reviewed deployment, per-device troubleshooting and local reports. No permanent UMT endpoint agent.">
+  <meta property="og:url" content="https://gopalumasree.github.io/Updates-Management-Tool/">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#142d46">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://gopalumasree.github.io/Updates-Management-Tool/#website","url":"https://gopalumasree.github.io/Updates-Management-Tool/","name":"VenuOps UMT","alternateName":"Updates Management Tool"},{"@type":"SoftwareApplication","@id":"https://gopalumasree.github.io/Updates-Management-Tool/#umt","name":"Updates Management Tool (UMT)","alternateName":"VenuOps UMT","url":"https://gopalumasree.github.io/Updates-Management-Tool/","applicationCategory":"UtilitiesApplication","operatingSystem":"Windows x64","softwareVersion":"0.8.2","description":"Portable Windows application for agentless Windows patching over RDP and Linux patching over SSH, with reviewed deployment, troubleshooting, groups and reports.","downloadUrl":"https://github.com/gopalumasree/Updates-Management-Tool/releases/latest","releaseNotes":"https://github.com/gopalumasree/Updates-Management-Tool/releases/tag/v0.8.2","creator":{"@type":"Person","name":"Venugopala Rao.P"},"sameAs":"https://github.com/gopalumasree/Updates-Management-Tool"}]}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap topbar">
+  <a class="brand" href="./" aria-label="VenuOps home"><span class="mark">V</span> VenuOps<span class="brand-note">TOOLS FOR IT OPERATIONS</span></a>
+  <nav aria-label="Main navigation"><a href="#how-it-works">How it works</a><a href="#requirements">Requirements</a><a href="#help">Help</a><a class="nav-download" href="#download">Download ↗</a></nav>
+</header>
+<main id="main">
+<section class="hero wrap">
+  <div class="hero-copy">
+    <p class="eyebrow">UPDATES MANAGEMENT TOOL · UMT</p>
+    <h1>Windows patching.<br><span>Over RDP.</span></h1>
+    <p class="lead">Scan, review and deploy updates through existing RDP access—without enabling WinRM or requiring PowerShell on Windows endpoints.</p>
+    <p class="sublead">Linux patching over SSH. No permanent UMT endpoint agent. One portable Windows application.</p>
+    <div class="actions"><a class="button primary" href="https://github.com/gopalumasree/Updates-Management-Tool/releases/latest">Download Public edition <span aria-hidden="true">↗</span></a><a class="text-link" href="#how-it-works">See the workflow <span aria-hidden="true">↓</span></a></div>
+    <p class="version">Public Protected · v0.8.2 · Windows x64 host</p>
+  </div>
+  <div class="connection" role="img" aria-label="Connection diagram: UMT on a Windows PC connects to Windows servers over RDP and Linux servers over SSH. Both feed a reviewed plan and local reports.">
+    <div class="diagram-head"><span class="light"></span> THE CONNECTION, SIMPLIFIED <span>01</span></div>
+    <div class="host"><span class="host-icon">UMT</span><div><strong>Your Windows PC</strong><span>Portable console · local reports</span></div></div>
+    <div class="routes"><div><span class="route-label">RDP</span><span class="route-line"></span><strong>Windows servers</strong><small>Existing approved access</small></div><div><span class="route-label">SSH</span><span class="route-line"></span><strong>Linux servers</strong><small>Configured repositories</small></div></div>
+    <div class="diagram-foot"><span>SCAN</span><i>→</i><span>REVIEW</span><i>→</i><span>PATCH</span><i>→</i><span>REPORT</span></div>
+    <p>Architecture diagram · not a live activity screen</p>
+  </div>
+</section>
+<section class="proof-strip"><div class="wrap"><span>No installed endpoint agent</span><span>No WinRM requirement</span><span>Reviewed patch plans</span><span>Windows + Linux targets</span></div></section>
+<section class="wrap section" id="how-it-works">
+  <div class="section-heading"><p class="eyebrow">01 / ACCESS YOU ALREADY USE</p><h2>Agentless Windows patch management<br>through an RDP session.</h2></div>
+  <div class="explain-grid"><div><p>UMT connects through RDP and starts a temporary worker using Windows Script Host. The worker calls Windows Update APIs locally; results return through an isolated redirected folder.</p><p>This Windows path does not require enabling PowerShell remoting, remote WMI, Remote Registry or administrative SMB shares. Updates come from the server’s configured Windows Update or WSUS source.</p></div><aside><h3>Where it fits</h3><p>Server environments where RDP is already approved, but additional management protocols or permanent agents are difficult to introduce.</p><p class="small">RDP access, drive redirection and worker execution must be permitted. UMT does not bypass endpoint policy.</p></aside></div>
+  <ol class="workflow"><li><span>01</span><h3>Connect & scan</h3><p>Add Windows and Linux devices. Check access and discover available updates.</p></li><li><span>02</span><h3>Review the plan</h3><p>Choose patch scope, exclusions and restart rules. Review the selected updates.</p></li><li><span>03</span><h3>Deploy & verify</h3><p>Apply the reviewed plan. Follow device progress and reported installation results.</p></li><li><span>04</span><h3>Resolve & report</h3><p>Troubleshoot one device, rescan it, and open HTML or Excel reports.</p></li></ol>
+</section>
+<section class="tinted"><div class="wrap section">
+  <div class="section-heading"><p class="eyebrow">02 / KEEP THE NEXT ACTION CLOSE</p><h2>When a scan needs attention,<br>work on that device.</h2></div>
+  <div class="feature-rows"><article><span>01</span><div><h3>Troubleshooting with evidence</h3><p>Review the source, policy, registry path or repository file behind the finding. Use an applicable in-tool repair, then rescan the same device.</p></div></article><article><span>02</span><div><h3>Linux updates from verified working sources</h3><p>A failed repository need not block every update. Prepare a fresh plan from verified working sources; excluded sources and unknown totals stay visible.</p></div></article><article><span>03</span><div><h3>Reusable groups and patch reports</h3><p>Save device groups, set scan or deployment policies, and filter historical reports. Scheduling is optional; Windows RDP currently needs an open, unlocked UMT portal session.</p></div></article></div>
+</div></section>
+<section class="wrap section" id="requirements">
+  <div class="section-heading"><p class="eyebrow">03 / KNOW BEFORE YOU RUN</p><h2>Clear requirements. Visible limits.</h2></div>
+  <div class="requirements"><article><h3>Windows targets</h3><ul><li>Reachable RDP and sufficient update permissions.</li><li>Permitted drive redirection and Windows Script Host execution.</li><li>Access to the configured update source.</li><li>Complete provider MFA in the native RDP screen when required.</li></ul></article><article><h3>Linux targets</h3><ul><li>Reachable SSH and sufficient package-management permissions.</li><li>Supported package manager and repository access.</li><li>Password or supported SSH key authentication; interactive prompts where required.</li><li>Review repository exclusions before deployment.</li></ul></article></div>
+  <details><summary>What “agentless” and “without PowerShell” mean</summary><p>No permanent UMT agent is installed on endpoints. A temporary worker still executes on the Windows server using <code>cscript</code>, Windows Update APIs and local WMI checks. The tool PC uses a bundled PowerShell runtime. No endpoint PowerShell or PowerShell-remoting setup is required for this RDP patching path.</p></details>
+  <details><summary>Current validation and scheduling limits</summary><p>Release 0.8.2 passed automated regression, package-integrity and native-startup checks within the documented scope. Live deployment, installed-service lifecycle, logged-out scheduling and cross-PC credential migration acceptance remain pending. A broader saved-credential test process stopped before completion; simulated scheduler tests passed separately.</p><p>Windows RDP/MFA work currently requires an unlocked portal session. Old duplicate scheduler registrations are not automatically removed. Start with a scan-only trial and read <code>docs/VALIDATION.txt</code> in the release.</p></details>
+  <details><summary>Credentials, host trust and Public edition protection</summary><p>Saved access is encrypted and Windows/account-bound. Use Backup / move and Restore for migration, then validate access. Reports and operational data remain local unless you choose to share them.</p><p>Current SSH host keys and RDP certificates are automatically accepted; SSH fingerprints and changes are recorded. Check the bundled privacy and authentication documentation against your requirements.</p><p>The Public edition checks owner-signed application files for modification. Normal use needs no owner passphrase. This is application integrity protection, not Windows Authenticode signing or a guarantee against reverse engineering. Public availability does not make the application source open source.</p></details>
+</section>
+<section class="wrap section faq" id="help">
+  <div class="section-heading"><p class="eyebrow">04 / QUICK ANSWERS</p><h2>Questions before your first scan?</h2></div>
+  <details><summary>Can UMT patch Windows servers without WinRM?</summary><p>Yes. Its Windows patching path uses RDP to start a local worker and exchange results. You do not need to enable WinRM or PowerShell remoting. RDP, drive redirection and worker execution must already be permitted.</p></details>
+  <details><summary>How does UMT differ from other agentless patching tools?</summary><p>The connection method is the distinction. <a href="https://docs.pdq.com/current-version/Deploy/windows-services.htm">PDQ Deploy documents administrative-share transfer and a temporary target service</a>. <a href="https://help.ivanti.com/iv/help/en_US/isec/vNow/Topics/Configuring-Agentless-Patch-Management.htm">Ivanti Security Controls documents file sharing and Remote Registry for agentless scans</a>. UMT uses an RDP session for its Windows path. These are architectural differences, not a claim that UMT replaces every enterprise feature.</p></details>
+  <details><summary>Does UMT support both Windows and Linux patching?</summary><p>UMT runs on a Windows x64 PC and manages Windows targets over RDP and Linux targets over SSH. It is not a native Linux desktop application. Available patch choices depend on the target operating system and package manager.</p></details>
+  <details><summary>Can I keep using the same extracted folder?</summary><p>Yes. Retain the folder to keep local configuration, run reports and history. Use New scan for a fresh run, or rescan a single device when appropriate. Resume applies to interrupted deployments. Use the protected migration workflow when moving saved access to another machine.</p></details>
+  <details><summary>Can I deploy Linux updates if one repository fails?</summary><p>UMT can prepare a new plan using freshly verified working sources. Review the excluded source and selected packages before deployment. Cached or merely observed packages are not automatically a verified deployment plan, and whole-device pending totals may remain unknown.</p></details>
+  <p class="help-link">Need help with a specific result? <a href="https://github.com/gopalumasree/Updates-Management-Tool/issues">Report an issue on GitHub ↗</a> <span>Remove secrets and private device details before sharing evidence.</span></p>
+</section>
+<section class="download-band" id="download"><div class="wrap download-layout"><div><p class="eyebrow">START WITH A SCAN</p><h2>Get Updates Management Tool.</h2><p>Download the complete Public ZIP, extract it into a writable folder, and open <strong>UpdatesManagementTool.exe</strong>.</p><p class="small">Choose the named Public ZIP under Assets. GitHub’s automatic “Source code” archives contain repository documentation, not the application.</p></div><div class="download-actions"><a class="button light-button" href="https://github.com/gopalumasree/Updates-Management-Tool/releases/latest">Download Public edition ↗</a><a href="https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.pdf">Visual guide · PDF ↗</a><a href="https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.docx">Visual guide · Word ↗</a><a href="https://github.com/gopalumasree/Updates-Management-Tool/releases/tag/v0.8.2">v0.8.2 release notes & checksum ↗</a></div></div></section>
+</main>
+<footer class="wrap"><div><strong>VenuOps</strong><p>Created by <b>Venugopala Rao.P</b><br><a href="tel:+919908987878">+91 9908987878</a></p></div><div class="footer-links"><a href="https://github.com/gopalumasree/VenuOps">Tool catalog ↗</a><a href="https://github.com/gopalumasree/Updates-Management-Tool">UMT on GitHub ↗</a><span>Product information reviewed 3 November 2026.</span><span>No analytics or advertising scripts added to this page.</span></div></footer>
+</body>
+</html>
