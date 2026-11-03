@@ -1,6 +1,10 @@
-# Updates Management Tool (UMT)
+# VenuOps UMT — Agentless Windows Patching over RDP
 
-**Windows and Linux patch management — scan, review, deploy and report.**
+**Patch Windows servers through existing RDP access—without WinRM or endpoint PowerShell. Manage Linux updates over SSH from the same portable Windows application.**
+
+No permanent UMT endpoint agent. Scan, review, deploy, troubleshoot and report.
+
+**[Product website & requirements](https://venuops-umt.umasreey.chatgpt.site/)** · **[Download Public edition](https://github.com/gopalumasree/Updates-Management-Tool/releases/latest)** · **[Visual PDF guide](https://github.com/gopalumasree/Updates-Management-Tool/releases/download/v0.8.2/UMT-0.8.2-Visual-Use-Guide.pdf)**
 
 Created by **Venugopala Rao.P** · **+91 9908987878**
 
@@ -13,6 +17,22 @@ Part of **[VenuOps](https://github.com/gopalumasree/VenuOps)** — public infras
 Choose **UMT-0.8.2-Public-Protected-win-x64.zip** under **Assets**. Extract the entire ZIP into a writable folder and open **UpdatesManagementTool.exe**. Normal use does not require an owner passphrase.
 
 The Word and PDF visual guides are included in `docs` and are also available as separate release downloads. The automatically generated **Source code** ZIP/tar.gz is this download-page repository, not the application.
+
+## Windows patch management without WinRM
+
+UMT uses an RDP session to start a temporary Windows Script Host worker and exchange results through an isolated redirected folder. The worker calls Windows Update APIs locally and uses the configured Windows Update/WSUS source. This path does not require enabling PowerShell remoting, remote WMI, Remote Registry or administrative SMB shares.
+
+**Best fit:** administrators with approved RDP access who cannot readily introduce additional management protocols or permanent endpoint agents. RDP access, sufficient permissions, drive redirection and worker execution must be permitted. UMT does not bypass endpoint policy.
+
+**Agentless means no permanent UMT endpoint agent, not zero endpoint execution.** The worker uses `cscript`, Windows Update APIs and local WMI checks. The tool PC uses a bundled PowerShell runtime; the Windows RDP worker does not require endpoint PowerShell.
+
+## Troubleshoot and patch Windows and Linux devices
+
+- Review exact patch plans before deployment, for a batch or one device.
+- Inspect source/policy evidence, use applicable repairs and rescan the same device.
+- Prepare a fresh Linux plan from verified working repositories when another source fails; exclusions and unknown totals remain visible.
+- Retain groups, run history, HTML/Excel reports and optional schedules.
+- Keep using the same extracted folder; use Backup / move and Restore when moving saved access.
 
 ## Quick start
 
